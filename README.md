@@ -15,5 +15,4 @@ Simply just download the project and run it with Visual Studio 2017. That's all.
 
 ### Current Limitations
 
-The project currently works only with images which has same two images inside it to compare where all object positions are identical. For example, the sample
-image uploaded and used in this project.
+The project currently works only with images which has similar two images inside it to compare where all common object positions are identical. For example, the sample image uploaded and used in this project.
