@@ -5,10 +5,13 @@
 
 using namespace cv;
 
+// returns true if given number is even
 bool isEven(int inNumber);
 
+// cuts given image into two equal parts along width and returns them as left and right image
 void getLeftRightImages(const Mat& inSourceImg, Mat& outLeftImg, Mat& outRightImg, int& outOffset);
 
+// a procedure to detect difference between to images
 Mat getImgDiffProc1(const Mat& inImage1, const Mat& inImage2);
 
 int main()
@@ -33,21 +36,20 @@ int main()
     // find difference image
     Mat _diff = getImgDiffProc1(_leftImage, _rightImage);
 
+    // Now detect all contours from the detected diffs and draw bouding rectangle over them
     std::vector<std::vector<Point>> _contours;
     std::vector<Vec4i> _hierarchy;
-    cv::findContours(_diff, _contours, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE);
-    
-    Point2f _center;
-    float _radius;;
+    findContours(_diff, _contours, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE);
+ 
     for (int i = 0; i< _contours.size(); ++i)
     {      
       Rect r = boundingRect(_contours[i]);    
       r.x += _offset;
-      cv::rectangle(_image, r, Scalar(0, 0, 255),2);
+      rectangle(_image, r, Scalar(0, 0, 255),2);
     }
 
-    imshow("diff", _diff);
-    imshow("image", _image);
+    imshow("diff image", _diff);
+    imshow(_imagePath, _image);
     waitKey(0);
   }
   else
