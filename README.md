@@ -1,4 +1,4 @@
-# Project Title
+# Spot the differences between images
 
 This project is about finding differences between two images using OpenCV.
 
